@@ -121,7 +121,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
 
         // Act
         $new_test->delete();
-        // var_dump($result);
 
         // Assert
         $result = Store::getAll();
