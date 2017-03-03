@@ -8,9 +8,9 @@ class Store
 
     function __construct($store_name = '', $store_id = null, $id = null)
     {
-        $this->store_name;
-        $this->store_id;
-        $this->id:
+        $this->store_name = $store_name;
+        $this->store_id = $store_id;
+        // $this->id = $id;
     }
 
     // getters and setters
