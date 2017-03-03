@@ -25,13 +25,13 @@ class Store
 
     function getId()
     {
-        $this->id;
+    return $this->id;
     }
 
-    function setId($id)
-    {
-        $this->id = (int) $id;
-    }
+    // function setId($id)
+    // {
+    //     $this->id = (int) $id;
+    // }
 
     // functions
 
@@ -49,20 +49,15 @@ class Store
 
     function delete()
     {
-        $GLOBALS['DB']->exec("DELETE FROM stores WHERE name = '{$this->getName()}';");
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = '{$this->getId()}';");
     }
 
+    function find()
+    {
+        $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$this->getId()};");
+    }
     //  static functions
 
-    // static function findById($id)
-    // {
-    //     $stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = $id;");
-    //     foreach($stores as $store)
-    //     {
-    //         $shoe_store = new Store ( $store['store_name'], $store['id']);
-    //     }
-    //     return $shoe_store;
-    // }
 
     static function deleteAll()
     {
