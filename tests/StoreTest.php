@@ -1,5 +1,4 @@
 <?php
-
 /**
 * @backupGlobals disabled
 * @backupStaticAttributes disabled
@@ -8,105 +7,104 @@
 require_once "src/Store.php";
 // require_once "src/Brand.php";
 
-$server = "mysql:host=localhost:8889;dbname=shoes_test";
-$username = "root";
-$password = "root";
+$server = 'mysql:host=localhost:8889;dbname=shoes_test';
+$username = 'root';
+$password = 'root';
 $DB = new PDO($server, $username, $password);
 
 class StoreTest extends PHPUnit_Framework_TestCase
 {
-    // protected function tearDown()
-    // {
-    //     Store::deleteAll();
-    // }
+    protected function tearDown()
+    {
+        Store::deleteAll();
+    }
 
     function test_construct()
     {
         // Arrange
-        // $store_name = "PayMore";
-        // $id = NULL;
-        $new_store = new Store("PayMore");
-
+        $name = "PayMore";
+        $id = null;
+        $new_test = new Store($name, $id);
 
         // Act
-        $new_store2 = new Store();
-        $new_store2->setName($new_store->getName());
-        // $new_store2 = $$new_store2->setId($new_store2->getId());
-
+        $result = $new_test->getName();
+        $result2 = $new_test->getId();
 
         // Assert
-        $this->assertEquals("PayMore", $new_store2->getName());
+        $this->assertEquals("PayMore", $result);
+        $this->assertEquals($id, $result2);
+
     }
-    // //
-    // function test_save_dependant_on_getAll()
-    // {
-    //     // Arrange
-    //     $store_name = 'PayMore';
-    //     $id = NULL;
-    //     $new_test_store = new Store($store_name, $id);
-    //
-    //     // Act
-    //     $new_test_store->save();
-    //     $result = Store::getAll();
-    //
-    //     // Assert
-    //     $this->assertEquals($new_test_store, $result[0]);
-    // }
-    //
-    // function test_getAll()
-    // {
-    //     // Arrange
-    //     $store_name = "PayMore";
-    //     $id = NULL;
-    //     $new_test_store = new Store($store_name, $id);
-    //     $new_test_store->save();
-    //
-    //     $store_name2 = "PayLess";
-    //     $new_test_store2 = new Store($store_name2, $id);
-    //     $new_test_store2->save();
-    //
-    //     // Act
-    //     $result = Store::getAll();
-    //
-    //     // Assert
-    //     $this->assertEquals([$new_test_store, $new_test_store2], $result);
-    // }
-    //
-    // function test_deleteAll()
-    // {
-    //     // Arrange
-    //     $store_name = "PayMore";
-    //     $id = NULL;
-    //     $new_test_store = new Store($store_name, $id);
-    //     $new_test_store->save();
-    //
-    //
-    //     // Act
-    //     Store::deleteAll();
-    //     $result = Store::getAll();
-    //
-    //     // Assert
-    //     $this->assertEquals([], $result);
-    // }
-    //
-    // function test_search()
-    // {
-    //     // Arrange
-    //     $store_name = 'PayMore';
-    //     $new_store = new Store($store_name, $id);
-    //     $new_store->save();
-    //     var_dump($new_store);
-    //
-    //     $store_name = "PayLess";
-    //     $new_store2 = new Store($store_name, $id);
-    //     $new_store2->save();
-    //
-    //     // Act
-    //     $found_store = Store::findById($new_store->getId());
-    //
-    //     // Assert
-    //     $this->assertEquals($new_store, $found_store);
-    // }
+
+    function test_save()
+    {
+        // Arrange
+        $name = "PayMore";
+        $id = null;
+        $new_test = new Store($name, $id);
+        $new_test->save();
+
+        // Act
+        $result = Store::getAll();
+
+        // Assert
+        $this->assertEquals($new_test, $result[0]);
+    }
+
+    function test_getAll()
+    {
+        // Arrange
+        $name = "PayMore";
+        $id = null;
+        $new_test = new Store($name, $id);
+        $new_test->save();
+
+        $name2 = "PayMore2";
+        $new_test2 = new Store($name2, $id);
+        $new_test2->save();
+
+        // Act
+        $result = Store::getAll();
+
+        // Assert
+        $this->assertEquals([$new_test, $new_test2], $result);
+    }
+
+    function test_deleteAll()
+    {
+        // Arrange
+        $name = "PayMore";
+        $id = null;
+        $new_test = new Store($name, $id);
+        $new_test->save();
+
+        $name2 = "PayMore2";
+        $new_test2 = new Store($name2, $id);
+        $new_test2->save();
+
+        // Act
+        $result = Store::deleteAll();
+        $result = Store::getAll();
+
+        // Assert
+        $this->assertEquals([], $result);
+    }
+
+    function test_update()
+    {
+        // Arrange
+        $name = "PayMore";
+        $id = null;
+        $new_test = new Store($name, $id);
+        $new_test->save();
+
+        $new_name = "Pay2More";
+        // Act
+        $new_test->update($new_name);
+
+        // Assert
+        $this->assertEquals("Pay2More", $new_test->getName());
+    }
 }
 
 ?>

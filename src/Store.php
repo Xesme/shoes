@@ -2,25 +2,25 @@
 
 class Store
 {
-    private $store_name;
+    private $name;
     private $id;
 
-    function __construct($store_name, $id = NULL)
+    function __construct($name, $id = null)
     {
-        $this->store_name = $store_name;
+        $this->name = $name;
         $this->id = $id;
     }
 
     // getters and setters
 
-    function getName()
+    function setName($new_name)
     {
-        return $this->store_name;
+        $this->name = (string) $new_name;
     }
 
-    function setName($new_store_name)
+    function getName()
     {
-        $this->store_name =  (string) $new_store_name;
+        return $this->name;
     }
 
     function getId()
@@ -28,21 +28,36 @@ class Store
         $this->id;
     }
 
-    // function getStoreId()
-    // {
-    //     $this->store_id;
-    // }
-
     // functions
 
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO stores (store_name) VALUES ('{$this->getName()}');");
+        $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->getName()}');");
         $this->id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function update($new_name)
+    {
+        $GLOBALS['DB']->exec("UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};");
+        $this->setname($new_name);
+    }
+
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+    }
 
     //  static functions
+
+    // static function findById($id)
+    // {
+    //     $stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = $id;");
+    //     foreach($stores as $store)
+    //     {
+    //         $shoe_store = new Store ( $store['store_name'], $store['id']);
+    //     }
+    //     return $shoe_store;
+    // }
 
     static function deleteAll()
     {
@@ -55,14 +70,13 @@ class Store
         $stores = array();
         foreach($returned_store as $store)
         {
-            $store_name = $store['store_name'];
+            $name = $store['name'];
             $id = $store['id'];
-            $new_store = new Store($store_name, $id);
+            $new_store = new Store($name, $id);
             array_push($stores, $new_store);
         }
         return $stores;
     }
-
 }
 
  ?>
