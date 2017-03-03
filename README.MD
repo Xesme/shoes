@@ -43,7 +43,7 @@ When you are finished with the assignment, make sure to export your databases an
 
 
 ## Known Bugs
-* No known bugs
+* There is a bug in findById() in the Store class.
 
 ## Support and contact details
 * No support
@@ -112,4 +112,8 @@ When you are finished with the assignment, make sure to export your databases an
 3 rows in set (0.00 sec)
 * INSERT INTO stores (store_name, store_id, id) VALUES ('{$this->getName()}'); (function save())
 * "SELECT * FROM stores;" (function getAll())
-* DELETE FROM stores; (function deleteAll())
+* "DELETE FROM stores; (function deleteAll())"
+* "UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};" (function update())
+* "DELETE FROM stores WHERE id = '{$this->getId()}';"
+* "SELECT * FROM stores WHERE id = {$this->getId()};"
+* 
