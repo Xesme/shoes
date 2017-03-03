@@ -3,13 +3,11 @@
 class Store
 {
     private $store_name;
-    private $store_id;
     private $id;
 
-    function __construct($store_name = '', $store_id = null, $id = null)
+    function __construct($store_name = '', $id = NULL)
     {
         $this->store_name = $store_name;
-        $this->store_id = $store_id;
         $this->id = $id;
     }
 
@@ -20,9 +18,9 @@ class Store
         return $this->store_name;
     }
 
-    function setName($store_name)
+    function setName($new_store_name)
     {
-        $this->store_name = (string) $store_name;
+        $this->store_name = (string) $new_store_name;
     }
 
     function getId()
@@ -30,9 +28,34 @@ class Store
         $this->id;
     }
 
-    function getStoreId()
+    // function getStoreId()
+    // {
+    //     $this->store_id;
+    // }
+
+    // functions
+
+    function save()
     {
-        $this->store_id;
+        $GLOBALS['DB']->exec("INSERT INTO stores (store_name) VALUES ('{$this->getName()}');");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
+
+
+    //  static functions
+
+    static function getAll()
+    {
+        $returned_store = $GLOBALS['DB']->query("SELECT * FROM stores;");
+        $stores = array();
+        foreach($returned_store as $store)
+        {
+            $store_name = $store['store_name'];
+            $id = $store['id'];
+            $new_store = new Store($store_name, $id);
+            array_push($stores, $new_store);
+        }
+        return $stores;
     }
 }
 

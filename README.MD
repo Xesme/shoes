@@ -86,11 +86,11 @@ When you are finished with the assignment, make sure to export your databases an
 * /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
 * CREATE DATABASE shoes;
 * USE shoes;
-* CREATE TABLE stores (store_name VARCHAR (255), store_id BIGINT, id serial PRIMARY KEY);
+* CREATE TABLE stores (store_name VARCHAR (255), id serial PRIMARY KEY);
 * CREATE TABLE brands (bran_name VARCHAR (255), brand_id BIGINT, id serial PRIMARY KEY);
 * CREATE DATABASE shoes_test;
 * USE shoes_test;
-* CREATE TABLE stores (store_name VARCHAR (255), store_id BIGINT, id serial PRIMARY KEY);
+* CREATE TABLE stores (store_name VARCHAR (255), id serial PRIMARY KEY);
 * CREATE TABLE brands (bran_name VARCHAR (255), brand_id BIGINT, id serial PRIMARY KEY);
 * DESCRIBE stores;
 +------------+---------------------+------+-----+---------+----------------+
@@ -110,3 +110,5 @@ When you are finished with the assignment, make sure to export your databases an
 | id        | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
 +-----------+---------------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
+* INSERT INTO stores (store_name, store_id, id) VALUES ('{$this->getName()}'); (function save())
+* "SELECT * FROM stores;" (function getAll())
