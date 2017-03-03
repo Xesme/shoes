@@ -3,7 +3,7 @@
 /**
 * @backupGlobals disabled
 * @backupStaticAttributes disabled
-**/
+*/
 
 require_once "src/Store.php";
 // require_once "src/Brand.php";
@@ -15,6 +15,10 @@ $DB = new PDO($server, $username, $password);
 
 class StoreTest extends PHPUnit_Framework_TestCase
 {
+    protected function tearDown()
+    {
+        Store::deleteAll();
+    }
 
     function test_construct()
     {
@@ -30,7 +34,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals($store_name, $result1);
         $this->assertEquals($id, $result3);
-
     }
 
     function test_save_dependant_on_getAll()
@@ -45,9 +48,27 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $result = Store::getAll();
 
         // Assert
-        $this->assertEquals([$new_test_store], $result);
+        $this->assertEquals($new_test_store, $result[0]);
     }
 
+    function test_getAll()
+    {
+        // Arrange
+        $store_name = "PayMore";
+        $id = NULL;
+        $new_test_store = new Store($store_name, $id);
+        $new_test_store->save();
+
+        $store_name2 = "PayLess";
+        $new_test_store2 = new Store($store_name2, $id);
+        $new_test_store2->save();
+
+        // Act
+        $result = Store::getAll();
+
+        // Assert
+        $this->assertEquals([$new_test_store, $new_test_store2], $result);
+    }
 }
 
 ?>

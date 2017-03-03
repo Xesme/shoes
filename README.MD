@@ -112,3 +112,4 @@ When you are finished with the assignment, make sure to export your databases an
 3 rows in set (0.00 sec)
 * INSERT INTO stores (store_name, store_id, id) VALUES ('{$this->getName()}'); (function save())
 * "SELECT * FROM stores;" (function getAll())
+* DELETE FROM stores; (function deleteAll())

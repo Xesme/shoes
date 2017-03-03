@@ -5,7 +5,7 @@ class Store
     private $store_name;
     private $id;
 
-    function __construct($store_name = '', $id = NULL)
+    function __construct($store_name, $id = NULL)
     {
         $this->store_name = $store_name;
         $this->id = $id;
@@ -20,7 +20,7 @@ class Store
 
     function setName($new_store_name)
     {
-        $this->store_name = (string) $new_store_name;
+        $this->store_name =  (string) $new_store_name;
     }
 
     function getId()
@@ -44,6 +44,11 @@ class Store
 
     //  static functions
 
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stores;");
+    }
+
     static function getAll()
     {
         $returned_store = $GLOBALS['DB']->query("SELECT * FROM stores;");
@@ -57,6 +62,7 @@ class Store
         }
         return $stores;
     }
+
 }
 
  ?>
