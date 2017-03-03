@@ -28,6 +28,11 @@ class Store
         $this->id;
     }
 
+    function setId($id)
+    {
+        $this->id = (int) $id;
+    }
+
     // functions
 
     function save()
@@ -44,7 +49,7 @@ class Store
 
     function delete()
     {
-        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE name = '{$this->getName()}';");
     }
 
     //  static functions
