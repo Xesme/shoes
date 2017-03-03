@@ -69,6 +69,23 @@ class StoreTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals([$new_test_store, $new_test_store2], $result);
     }
+
+    function test_deleteAll()
+    {
+        // Arrange
+        $store_name = "PayMore";
+        $id = NULL;
+        $new_test_store = new Store($store_name, $id);
+        $new_test_store->save();
+
+
+        // Act
+        Store::deleteAll();
+        $result = Store::getAll();
+
+        // Assert
+        $this->assertEquals([], $result);
+    }
 }
 
 ?>
