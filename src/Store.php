@@ -10,7 +10,7 @@ class Store
     {
         $this->store_name = $store_name;
         $this->store_id = $store_id;
-        // $this->id = $id;
+        $this->id = $id;
     }
 
     // getters and setters

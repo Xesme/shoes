@@ -23,7 +23,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $store_id = NULL;
         $id = NULL;
         $new_store = new Store($store_name, $store_id, $id);
-        var_dump($new_store);
 
         // Act
         $result1 = $new_store->getName();
