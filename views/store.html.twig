@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+    {% block page %}
+
+    <h2>Update store in the database</h2>
+    <form class action="/patch/store" method="post">
+        <input name="_method" value="patch" hidden>
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <button class="btn btn-success" type="submit"> Add </button>
+    </form>
+    <br>
+    <br>
+    <h2>Delete this store</h2>
+    <form action="/delete/store" method="post">
+        <input name="_method" value="delete" hidden>
+        <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+{% endblock %}
