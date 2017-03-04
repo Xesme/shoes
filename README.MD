@@ -43,7 +43,7 @@ When you are finished with the assignment, make sure to export your databases an
 
 
 ## Known Bugs
-* There is a bug in findById() in the Store class.
+* There are no bugs currently but the project is unfinished. 
 
 ## Support and contact details
 * No support
