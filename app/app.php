@@ -32,6 +32,11 @@ $app->post("/add/store", function() use($app){
     return $app['twig']->render('index.html.twig', array('stores' => $stores));
 });
 
+$app->get("/store/{id}", function($id) use($app){
+    return "to do";
+});
+
+
 // return the app
 return $app;
  ?>
