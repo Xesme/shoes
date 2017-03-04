@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
     {% block page %}
-
+    {% if stores is not empty %}
+        {% for store in stores %}
+        <h1>{{ store.getName }}</h1>
+        {% endfor %}
+    {% endif %}
     <h2>Update store in the database</h2>
     <form class action="/patch/store" method="post">
         <input name="_method" value="patch" hidden>

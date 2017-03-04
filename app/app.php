@@ -33,8 +33,14 @@ $app->post("/add/store", function() use($app){
 });
 
 $app->get("/store/{id}", function($id) use($app){
-    return "to do";
+    $id = null;
+    $store = new Store($_POST['name'], $id);
+    $store->save();
+    $stores = Store::getAll();
+    return $app['twig']->render('store.html.twig', array('stores' => $stores));
 });
+
+
 
 
 // return the app
