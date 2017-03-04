@@ -71,7 +71,7 @@ When you are finished with the assignment, make sure to export your databases an
 
 * Construct a README.md
 * Build shoes and shoes_test databases
-* Build and test Class (Store with all CRUD functionality)
+* Build and test Store class (Store with all CRUD functionality)
 * Implementation of Silex framework
 * Implementation of basic Store routes with Twig
 * Build and test Class (Brand)  
@@ -116,4 +116,4 @@ When you are finished with the assignment, make sure to export your databases an
 * "UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};" (function update())
 * "DELETE FROM stores WHERE id = '{$this->getId()}';"
 * "SELECT * FROM stores WHERE id = {$this->getId()};"
-* 
+*
