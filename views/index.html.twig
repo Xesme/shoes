@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block page %}
-
-<p> YOU MADE IT</p>
+<h2>Add a new store to the database</h2>
+<form class action="/add/store" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name" required>
+    <button class="btn btn-success" type="submit"> Add </button>
+</form>
 
 {% endblock %}

@@ -19,10 +19,18 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array('twig.path' => __
 //     Request::enableHttpMethodParameterOverride();
 
 $app->get('/', function() use($app)
-{
-    return $app['twig']->render('index.html.twig');
+{   $stores = Store::getAll();
+    return $app['twig']->render('index.html.twig', array( 'stores' => $stores ));
 });
 
+$app->post("/add/store", function() use($app){
+    $id = null;
+    $store = new Store($_POST['name'], $id);
+    $store->save();
+    $stores = Store::getAll();
+
+    return $app['twig']->render('index.html.twig', array('stores' => $stores));
+});
 
 // return the app
 return $app;
