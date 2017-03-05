@@ -43,7 +43,7 @@ When you are finished with the assignment, make sure to export your databases an
 
 
 ## Known Bugs
-* There are no bugs currently but the project is unfinished. 
+* There are no bugs currently but the project is unfinished.
 
 ## Support and contact details
 * No support
@@ -79,7 +79,6 @@ When you are finished with the assignment, make sure to export your databases an
 * Build and test StoreBrand Class (and join statements)
 * Build twig routes for StoreBrand
 * Implement routes with Twig and polish html and CSS
-
 * End specifications
 
 ## Used MySQL Commands
@@ -116,4 +115,3 @@ When you are finished with the assignment, make sure to export your databases an
 * "UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};" (function update())
 * "DELETE FROM stores WHERE id = '{$this->getId()}';"
 * "SELECT * FROM stores WHERE id = {$this->getId()};"
-*

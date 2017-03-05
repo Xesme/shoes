@@ -25,13 +25,8 @@ class Store
 
     function getId()
     {
-    return $this->id;
+        return $this->id;
     }
-
-    // function setId($id)
-    // {
-    //     $this->id = (int) $id;
-    // }
 
     // functions
 
@@ -43,7 +38,7 @@ class Store
 
     function update($new_name)
     {
-        $GLOBALS['DB']->exec("UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_name}' WHERE id = {$this->getId()};");
         $this->setname($new_name);
     }
 
@@ -56,9 +51,8 @@ class Store
     {
         $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$this->getId()};");
     }
+
     //  static functions
-
-
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM stores;");
@@ -77,6 +71,19 @@ class Store
         }
         return $stores;
     }
-}
 
+    static function getStoreById($store_id)
+    {
+        $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$store_id};");
+        foreach($returned_stores as $store)
+        {
+            $name = $store['name'];
+            $id = $store['id'];
+            $new_store = new Store($name, $id);
+            return $new_store;
+        }
+    }
+
+    // end of app
+}
  ?>
