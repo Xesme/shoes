@@ -92,22 +92,19 @@ When you are finished with the assignment, make sure to export your databases an
 * CREATE TABLE stores (store_name VARCHAR (255), id serial PRIMARY KEY);
 * CREATE TABLE brands (bran_name VARCHAR (255), brand_id BIGINT, id serial PRIMARY KEY);
 * DESCRIBE stores;
-+------------+---------------------+------+-----+---------+----------------+
 | Field      | Type                | Null | Key | Default | Extra          |
-+------------+---------------------+------+-----+---------+----------------+
+|------------|---------------------|------|-----|---------|----------------|
 | store_name | varchar(255)        | YES  |     | NULL    |                |
 | store_id   | bigint(20)          | YES  |     | NULL    |                |
 | id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-+------------+---------------------+------+-----+---------+----------------+
 3 rows in set (0.11 sec)
+
 * DESCRIBE brands;
-+-----------+---------------------+------+-----+---------+----------------+
 | Field     | Type                | Null | Key | Default | Extra          |
-+-----------+---------------------+------+-----+---------+----------------+
+|-----------|---------------------|------|-----|---------|----------------|
 | bran_name | varchar(255)        | YES  |     | NULL    |                |
 | brand_id  | bigint(20)          | YES  |     | NULL    |                |
 | id        | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-+-----------+---------------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
 * INSERT INTO stores (store_name, store_id, id) VALUES ('{$this->getName()}'); (function save())
 * "SELECT * FROM stores;" (function getAll())
@@ -115,3 +112,10 @@ When you are finished with the assignment, make sure to export your databases an
 * "UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};" (function update())
 * "DELETE FROM stores WHERE id = '{$this->getId()}';"
 * "SELECT * FROM stores WHERE id = {$this->getId()};"
+* CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id BIGINT, brand_id BIGINT);
+* DESCRIBE stores_brands|
+| Field    | Type                | Null | Key | Default | Extra          |
+|----------|---------------------|------|-----|---------|----------------|
+| id       | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
+| store_id | bigint(20)          | YES  |     | NULL    |                |
+| brand_id | bigint(20)          | YES  |     | NULL    |                |
