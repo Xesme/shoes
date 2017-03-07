@@ -13,7 +13,6 @@ class Brand
 
     // getters and setters
 
-
     function setName($new_brand_name)
     {
         $this->brand_name = (string) $new_brand_name;
@@ -55,8 +54,6 @@ class Brand
         }
         return $brands;
     }
-
-
 }
 
 

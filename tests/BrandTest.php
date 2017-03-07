@@ -87,5 +87,6 @@ class BrandTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals([ ], Brand::getAll());
     }
+
 }
  ?>
