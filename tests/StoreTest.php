@@ -23,8 +23,8 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = "PayMore";
-        $id = null;
-        $new_test = new Store($name, $id);
+        $store_id = null;
+        $new_test = new Store($name, $store_id);
 
         // Act
         $result = $new_test->getName();
@@ -32,7 +32,7 @@ class StoreTest extends PHPUnit_Framework_TestCase
 
         // Assert
         $this->assertEquals("PayMore", $result);
-        $this->assertEquals($id, $result2);
+        $this->assertEquals($store_id, $result2);
 
     }
 
@@ -40,8 +40,7 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = "PayMore";
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         // Act
@@ -55,12 +54,11 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = "PayMore";
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         $name2 = "PayMore2";
-        $new_test2 = new Store($name2, $id);
+        $new_test2 = new Store($name2, $store_id);
         $new_test2->save();
 
         // Act
@@ -74,12 +72,11 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = "PayMore";
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         $name2 = "PayMore2";
-        $new_test2 = new Store($name2, $id);
+        $new_test2 = new Store($name2, $store_id);
         $new_test2->save();
 
         // Act
@@ -94,8 +91,7 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = "PayMore";
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         $new_name = "Pay2More";
@@ -110,13 +106,11 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = 'PayMore';
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         $name2 = 'OmgShoes';
-        $id2 = null;
-        $new_test2 = new Store($name2, $id2);
+        $new_test2 = new Store($name2, $store_id2);
         $new_test2->save();
 
         // Act
@@ -131,13 +125,11 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $name = 'PayMore';
-        $id = null;
-        $new_test = new Store($name, $id);
+        $new_test = new Store($name, $store_id);
         $new_test->save();
 
         $name2 = 'OmgShoes';
-        $id2 = null;
-        $new_test2 = new Store($name2, $id2);
+        $new_test2 = new Store($name2, $store_id);
         $new_test2->save();
 
         // Act

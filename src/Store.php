@@ -3,12 +3,12 @@
 class Store
 {
     private $name;
-    private $id;
+    private $store_id;
 
-    function __construct($name, $id = null)
+    function __construct($name, $store_id = null)
     {
         $this->name = $name;
-        $this->id = $id;
+        $this->store_id = $store_id;
     }
 
     // getters and setters
@@ -25,7 +25,7 @@ class Store
 
     function getId()
     {
-        return $this->id;
+        return $this->store_id;
     }
 
     // functions
@@ -33,23 +33,23 @@ class Store
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO stores (name) VALUES ('{$this->getName()}');");
-        $this->id = $GLOBALS['DB']->lastInsertId();
+        $this->store_id = $GLOBALS['DB']->lastInsertId();
     }
 
     function update($new_name)
     {
-        $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_name}' WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_name}' WHERE store_id = {$this->getId()};");
         $this->setname($new_name);
     }
 
     function delete()
     {
-        $GLOBALS['DB']->exec("DELETE FROM stores WHERE id = '{$this->getId()}';");
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE store_id = '{$this->getId()}';");
     }
 
     function find()
     {
-        $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->query("SELECT * FROM stores WHERE store_id = {$this->getId()};");
     }
 
     //  static functions
@@ -65,8 +65,8 @@ class Store
         foreach($returned_store as $store)
         {
             $name = $store['name'];
-            $id = $store['id'];
-            $new_store = new Store($name, $id);
+            $store_id = $store['store_id'];
+            $new_store = new Store($name, $store_id);
             array_push($stores, $new_store);
         }
         return $stores;
@@ -74,16 +74,15 @@ class Store
 
     static function getStoreById($store_id)
     {
-        $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE id = {$store_id};");
+        $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE store_id = {$store_id};");
         foreach($returned_stores as $store)
         {
             $name = $store['name'];
-            $id = $store['id'];
-            $new_store = new Store($name, $id);
+            $store_id = $store['$store_id'];
+            $new_store = new Store($name, $store_id);
             return $new_store;
         }
     }
 
-    // end of app
 }
  ?>

@@ -40,6 +40,11 @@ class Brand
     {
         return $this->id;
     }
+
+    // functions
+    
+
+    // static functions
 }
 
 
