@@ -25,8 +25,7 @@ $app->get('/', function() use($app)
 
     //  CRUD for Store
 $app->post("/add/store", function() use($app){
-    $id = null;
-    $store = new Store($_POST['name'], $id);
+    $store = new Store($_POST['name'], $store_id);
     $store->save();
     $stores = Store::getAll();
 
@@ -55,7 +54,13 @@ $app->delete('/delete/store/{id}', function($id) use($app){
 });
 
     // CRUD for Brand
-    
+$app->post("/add/brand", function() use($app){
+    $brand = new Store($_POST['name'], $brand_id);
+    $brand->save();
+    $brands = Store::getAll();
+
+    return $app['twig']->render('index.html.twig', array('brands' => $brands));
+});
 
 // return the app
 return $app;
