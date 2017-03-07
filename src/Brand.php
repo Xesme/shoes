@@ -42,9 +42,31 @@ class Brand
     }
 
     // functions
-    
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO brands (brand_name) VALUES ('{$this->getName()}');");
+        $this->id = $GLOBALS['DB']->lastInsertId();
+    }
+
 
     // static functions
+
+    static function getAll()
+    {
+        $returned_brand = $GLOBALS['DB']->query("SELECT * FROM brands;");
+        $brands = array();
+        foreach($returned_brand as $brand)
+        {
+            $name = $brand['brand_name'];
+            $brand_id = $brand['brand_id'];
+            $id = $brand["id"];
+            $new_brand = new brand($name, $brand_id, $id);
+            array_push($brands, $new_brand);
+        }
+        return $brands;
+    }
+
+    
 }
 
 
