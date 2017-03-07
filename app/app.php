@@ -55,10 +55,9 @@ $app->delete('/delete/store/{id}', function($id) use($app){
 
     // CRUD for Brand
 $app->post("/add/brand", function() use($app){
-    $brand = new Store($_POST['name'], $brand_id);
+    $brand = new Brand($_POST['brand_name'], $brand_id);
     $brand->save();
-    $brands = Store::getAll();
-
+    $brands = Brand::getAll();
     return $app['twig']->render('index.html.twig', array('brands' => $brands));
 });
 

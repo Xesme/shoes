@@ -119,3 +119,6 @@ When you are finished with the assignment, make sure to export your databases an
 | id       | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
 | store_id | bigint(20)          | YES  |     | NULL    |                |
 | brand_id | bigint(20)          | YES  |     | NULL    |                |
+
+* USE shoes_test;
+* CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id BIGINT, brand_id BIGINT);
