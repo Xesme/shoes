@@ -5,7 +5,7 @@
 */
 
 require_once "src/Store.php";
-// require_once "src/Brand.php";
+require_once "src/Brand.php";
 
 $server = 'mysql:host=localhost:8889;dbname=shoes_test';
 $username = 'root';
@@ -17,6 +17,7 @@ class StoreTest extends PHPUnit_Framework_TestCase
     protected function tearDown()
     {
         Store::deleteAll();
+        Brand::deleteAll();
     }
 
     function test_construct()
@@ -138,7 +139,25 @@ class StoreTest extends PHPUnit_Framework_TestCase
 
         // Assert
         $this->assertEquals($new_test2, $result[1]);
+    }
 
+    function test_addBrand()
+    {
+        // Arrange
+        $name = 'PayMore';
+        $new_store = new Store($name, $store_id);
+        $new_store->save();
+
+        $brand_name = "Nada";
+        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand->save();
+
+        // var_dump(Store::getAll());
+        // Act
+        $new_store->addBrand($new_brand);
+
+        // Assert
+        $this->assertEquals($new_store->getBrand(), [$new_brand]);
     }
 }
 
