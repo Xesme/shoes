@@ -4,13 +4,11 @@ class Brand
 {
     private $brand_name;
     private $brand_id;
-    private $id;
 
-    function __construct($brand_name, $brand_id, $id = null)
+    function __construct($brand_name, $brand_id = null)
     {
         $this->brand_name = $brand_name;
-        $this->brand_id = $brand_id ;
-        $this->id = $id;
+        $this->brand_id = $brand_id;
     }
 
     // getters and setters
@@ -26,30 +24,23 @@ class Brand
         return $this->brand_name;
     }
 
-    function getBrandId()
-    {
-        return $this->brand_id;
-    }
-
-    function setBrandId($new_brand_id)
-    {
-        $this->brand_id = (int) $new_brand_id;
-    }
-
     function getId()
     {
-        return $this->id;
+        return $this->brand_id;
     }
 
     // functions
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO brands (brand_name) VALUES ('{$this->getName()}');");
-        $this->id = $GLOBALS['DB']->lastInsertId();
+        $this->brand_id = $GLOBALS['DB']->lastInsertId();
     }
 
-
     // static functions
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM brands;");
+    }
 
     static function getAll()
     {
@@ -57,16 +48,15 @@ class Brand
         $brands = array();
         foreach($returned_brand as $brand)
         {
-            $name = $brand['brand_name'];
+            $brand_name = $brand['brand_name'];
             $brand_id = $brand['brand_id'];
-            $id = $brand["id"];
-            $new_brand = new brand($name, $brand_id, $id);
+            $new_brand = new Brand($brand_name, $brand_id);
             array_push($brands, $new_brand);
         }
         return $brands;
     }
 
-    
+
 }
 
 
