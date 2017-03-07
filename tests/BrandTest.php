@@ -70,7 +70,22 @@ class BrandTest extends PHPUnit_Framework_TestCase
         $this->assertEquals([$new_brand, $new_brand2], $result);
     }
 
+    function test_deleteAll()
+    {
+        // Arrange
+        $brand_name = "Mc Snoopy Shoes";
+        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand->save();
 
+        $brand_name2 = "Shoes";
+        $new_brand2 = new Brand($brand_name2, $brand_id);
+        $new_brand2->save();
 
+        // Act
+        $result = Brand::deleteAll();
+
+        // Assert
+        $this->assertEquals([ ], Brand::getAll());
+    }
 }
  ?>
