@@ -144,21 +144,51 @@ class StoreTest extends PHPUnit_Framework_TestCase
     function test_addBrand()
     {
         // Arrange
-        $name = 'PayMore';
-        $new_store = new Store($name, $store_id);
-        $new_store->save();
+        $brand_name2 = "Mabbias";
+        $new_brand2 = new Brand($brand_name2, $brand_id);
+        $new_brand2->save();
 
         $brand_name = "Nada";
         $new_brand = new Brand($brand_name, $brand_id);
         $new_brand->save();
 
+        $name = 'PayMore';
+        $new_store = new Store($name, $store_id);
+        $new_store->save();
         // var_dump(Store::getAll());
         // Act
         $new_store->addBrand($new_brand);
+        $new_store->addBrand($new_brand2);
+        $result = $new_store->getBrand();
 
         // Assert
-        $this->assertEquals($new_store->getBrand(), [$new_brand]);
+        $this->assertEquals([$new_brand, $new_brand2], $result);
     }
+
+    // function test_deleteBrand()
+    // {
+    //     // Arrange
+    //     $brand_name2 = "Mabbias";
+    //     $new_brand2 = new Brand($brand_name2, $brand_id);
+    //     $new_brand2->save();
+    //
+    //     $brand_name = "Nada";
+    //     $new_brand = new Brand($brand_name, $brand_id);
+    //     $new_brand->save();
+    //
+    //     $name = 'PayMore';
+    //     $new_store = new Store($name, $store_id);
+    //     $new_store->save();
+    //     // var_dump(Store::getAll());
+    //     // Act
+    //     $new_store->addBrand($new_brand);
+    //     $new_store->addBrand($new_brand2);
+    //     $result = $new_store->deleteBrand($new_brand2);
+    //
+    //     // Assert
+    //     $this->assertEquals([$new_brand], $result);
+    //
+    // }
 }
 
 ?>

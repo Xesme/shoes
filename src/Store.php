@@ -44,7 +44,7 @@ class Store
 
     function delete()
     {
-        $GLOBALS['DB']->exec("DELETE FROM stores WHERE store_id = '{$this->getId()}';");
+        $GLOBALS['DB']->exec("DELETE FROM stores WHERE store_id = {$this->getId()};");
     }
 
     function find()
@@ -59,12 +59,13 @@ class Store
 
     function getBrand()
     {
+        $store = $this->getId();
+        // var_dump($store);
+
         $returned_brands = $GLOBALS['DB']->query("SELECT brands*. FROM stores JOIN stores_brands ON (stores.store_id = stores_brands.store_id) JOIN brands ON ( stores_brands.brand_id = brands.brand_id) WHERE stores.store_id = {$this->getId()};");
 
-        var_dump($returned_brands);
-
         $brands = array();
-        foreach($returned_brands as $brand)
+        foreach( $returned_brands as $brand)
         {
             $brand_name = $brand['brand_name'];
             $brand_id = $brand['brand_id'];
@@ -73,6 +74,11 @@ class Store
         }
         return $brands;
     }
+
+    // function deleteBrand()
+    // {
+    //     $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()} and brand_id = {$brand->getId()};");
+    // }
 
 
     //  static functions
@@ -98,13 +104,15 @@ class Store
     static function getStoreById($store_id)
     {
         $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE store_id = {$store_id};");
+        $stores = array();
         foreach($returned_stores as $store)
         {
             $name = $store['name'];
             $store_id = $store['$store_id'];
             $new_store = new Store($name, $store_id);
-            return $new_store;
+            array($store, $new_stores);
         }
+        return $stores;
     }
 
 }
