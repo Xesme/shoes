@@ -39,7 +39,7 @@ class Store
     function update($new_name)
     {
         $GLOBALS['DB']->exec("UPDATE stores SET name = '{$new_name}' WHERE store_id = {$this->getId()};");
-        $this->setname($new_name);
+        $this->setName($new_name);
     }
 
     function delete()
@@ -104,15 +104,13 @@ class Store
     static function getStoreById($store_id)
     {
         $returned_stores = $GLOBALS['DB']->query("SELECT * FROM stores WHERE store_id = {$store_id};");
-        $stores = array();
         foreach($returned_stores as $store)
         {
             $name = $store['name'];
-            $store_id = $store['$store_id'];
+            $store_id = $store['store_id'];
             $new_store = new Store($name, $store_id);
-            array($store, $new_stores);
+            return $new_store;
         }
-        return $stores;
     }
 
 }

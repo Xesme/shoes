@@ -122,3 +122,4 @@ When you are finished with the assignment, make sure to export your databases an
 
 * USE shoes_test;
 * CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id BIGINT, brand_id BIGINT);
+* DELETE FROM stores_brands WHERE store_id = {$this->getId()} and brand_id = {$brand->getId()};

@@ -9,12 +9,13 @@
     </head>
     <body>
         {% block header %}
-        <a href="/">Home</a> 
+        <a href="/">Home</a>
         {% endblock %}
         <div class="container">
-
-            {% block page %}
-            {% endblock %}
+            <div class="row">
+                {% block page %}
+                {% endblock %}
+            </div>
         </div>
     </body>
 </html>

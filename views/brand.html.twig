@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+    {% block page %}
+        <h1>{{ brand_name.getName }}</h1>
+
+        <h1>This brand is sold currently carried in these store(s):</h1>
+        {% if stores is not empty %}
+        <ul>
+            {% for store in stores %}
+            <li><a href="/store/{{store.getId}}">{{ store.getName }}</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+
+{% endblock %}

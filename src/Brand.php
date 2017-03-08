@@ -35,12 +35,24 @@ class Brand
         $this->brand_id = $GLOBALS['DB']->lastInsertId();
     }
 
+    function getByBrandId($brand_id)
+    {
+        $returned_brand = $GLOBALS['DB']->query("SELECT * FROM brands WHERE brand_id = {$brand_id};");
+
+        foreach($returned_brand as $brand)
+        {
+            $brand_name = $brand['brand_name'];
+            $brand_id = $brand['brand_id'];
+            $new_brand = new Brand($brand_name, $brand_id);
+            return $new_brand;
+        }
+    }
     // static functions
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM brands;");
         $GLOBALS['DB']->exec("DELETE FROM stores_brands;");
-        
+
     }
 
     static function getAll()

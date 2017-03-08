@@ -20,7 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
 
 $app->get('/', function() use($app)
 {   $stores = Store::getAll();
-    return $app['twig']->render('index.html.twig', array( 'stores' => $stores ));
+    $brands = Brand::getAll();
+    return $app['twig']->render('index.html.twig', array('stores' => $stores, 'brands' => $brands ));
 });
 
     //  CRUD for Store
@@ -28,8 +29,8 @@ $app->post("/add/store", function() use($app){
     $store = new Store($_POST['name'], $store_id);
     $store->save();
     $stores = Store::getAll();
-
-    return $app['twig']->render('index.html.twig', array('stores' => $stores));
+    $brands = Brand::getAll();
+    return $app['twig']->render('index.html.twig', array('stores' => $stores, 'brands' => $brands));
 });
 
 $app->get("/store/{id}", function($id) use($app){
@@ -39,10 +40,11 @@ $app->get("/store/{id}", function($id) use($app){
 });
 
 $app->patch("/patch/{id}", function($id) use($app){
+    $brands = Brand::getAll();
     $stores = Store::getAll();
     $store = Store::getStoreById($id);
     $store->update($_POST['name']);
-    return $app['twig']->render('store.html.twig', array( 'store' => $store, 'stores' => $stores));
+    return $app['twig']->render('index.html.twig', array( 'store' => $store, 'stores' => $stores, 'brands' => $brands));
 });
 
 
@@ -55,10 +57,18 @@ $app->delete('/delete/store/{id}', function($id) use($app){
 
     // CRUD for Brand
 $app->post("/add/brand", function() use($app){
-    $brand = new Brand($_POST['brand_name'], $brand_id);
+    $brand = new Brand($_POST['brand_name']);
     $brand->save();
     $brands = Brand::getAll();
-    return $app['twig']->render('index.html.twig', array('brands' => $brands));
+    $stores = Store::getAll();
+    return $app['twig']->render('index.html.twig', array('brands' => $brands, 'stores'=> $stores));
+});
+
+$app->get("/brand/{id}", function($id) use($app){
+    $stores = Store::getAll();
+    $brands = Brand::getall();
+    $brand_name = Brand::getByBrandId($id);
+    return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands, 'brand_name' => $brand_name));
 });
 
 // return the app
