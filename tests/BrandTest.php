@@ -27,7 +27,7 @@ class BrandTest extends PHPUnit_Framework_TestCase
         // Arrange
         $brand_name = "MC Shoes";
         $brand_id = null;
-        $new_brand = new Brand($brand_name, $band_id);
+        $new_brand = new Brand($brand_name, $brand_id);
 
         // Act
         $result1 = $new_brand->getName();
@@ -42,7 +42,7 @@ class BrandTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $brand_name = "Mc Snoopy Shoes";
-        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand = new Brand($brand_name);
 
         // Act
         $new_brand->save();
@@ -56,11 +56,11 @@ class BrandTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $brand_name = "Mc Snoopy Shoes";
-        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand = new Brand($brand_name);
         $new_brand->save();
 
         $brand_name2 = "Shoes";
-        $new_brand2 = new Brand($brand_name2, $brand_id);
+        $new_brand2 = new Brand($brand_name2);
         $new_brand2->save();
 
         // Act
@@ -74,11 +74,11 @@ class BrandTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $brand_name = "Mc Snoopy Shoes";
-        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand = new Brand($brand_name);
         $new_brand->save();
 
         $brand_name2 = "Shoes";
-        $new_brand2 = new Brand($brand_name2, $brand_id);
+        $new_brand2 = new Brand($brand_name2);
         $new_brand2->save();
 
         // Act
