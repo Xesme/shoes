@@ -2,7 +2,7 @@
 
     {% block page %}
     <div class="col-md-6">
-
+        <h1>{{ store }}</h1>
         <h2>Add a new store to the database</h2>
         <form action="/add/store" method="post">
             <label for="name">Name:</label>
@@ -25,6 +25,14 @@
         <form action="/add/brand" method="post">
             <label for="brand_name">Name:</label>
             <input type="text" name="brand_name" required>
+            <!-- <select name="store_id" required>
+                <option></option>
+                {% if stores is not empty%}
+                {% for store in stores %}
+                <option value='{{ store.getId }}'>{{ store.getName }}</option>
+                {% endfor %}
+                {% endif %}
+            </select> -->
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
         <br>

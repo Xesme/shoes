@@ -36,7 +36,8 @@ $app->post("/add/store", function() use($app){
 $app->get("/store/{id}", function($id) use($app){
     $stores = Store::getAll();
     $store_name = Store::getStoreById($id);
-    return $app['twig']->render('store.html.twig', array('stores' => $store_name));
+    $brands = Brand::getAll();
+    return $app['twig']->render('store.html.twig', array('stores' => $store_name, 'brands' => $brands));
 });
 
 $app->patch("/patch/{id}", function($id) use($app){
@@ -69,6 +70,16 @@ $app->get("/brand/{id}", function($id) use($app){
     $brands = Brand::getall();
     $brand_name = Brand::getByBrandId($id);
     return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands, 'brand_name' => $brand_name));
+});
+
+$app->post("/add/brand/store", function($store_id) use($app){
+    $store = Store::getStoreById($store_id);
+    $brand = Brand::getByBrandId($brand_id);
+
+    $store->addBrand($brand_id);
+    // $stores = Store::getAll();
+    // $brands = Brand::getAll():
+    return $app['twig']->render('index.html.twig', array('store_id' => $store));
 });
 
 // return the app

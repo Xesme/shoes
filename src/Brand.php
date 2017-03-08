@@ -36,16 +36,19 @@ class Brand
     }
 
     function getByBrandId($brand_id)
-    {
+    {   var_dump($brand_id);
         $returned_brand = $GLOBALS['DB']->query("SELECT * FROM brands WHERE brand_id = {$brand_id};");
 
+        // $brands = array();
         foreach($returned_brand as $brand)
         {
             $brand_name = $brand['brand_name'];
             $brand_id = $brand['brand_id'];
             $new_brand = new Brand($brand_name, $brand_id);
+            // array_push($new_brand, $brands);
             return $new_brand;
         }
+        // return $brands;
     }
     // static functions
     static function deleteAll()
