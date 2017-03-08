@@ -74,10 +74,10 @@ class Store
         return $brands;
     }
 
-    // function deleteBrand()
-    // {
-    //     $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()} and brand_id = {$brand->getId()};");
-    // }
+    function deleteBrand($brand)
+    {
+        $GLOBALS['DB']->exec("DELETE FROM stores_brands WHERE store_id = {$this->getId()} and brand_id = {$brand->getId()};");
+    }
 
 
     //  static functions
