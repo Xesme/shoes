@@ -23,6 +23,9 @@ When a user is viewing a single Brand, list all Stores that carry that Brand and
 
 When you are finished with the assignment, make sure to export your databases and commit the .sql.zip files for both the app database and the test database at the top of your project directory.
 
+## Specs
+
+
 
 ## Setup/Installation Requirements
 
