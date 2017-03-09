@@ -25,7 +25,18 @@ When you are finished with the assignment, make sure to export your databases an
 
 ## Specs
 
-
+|Behavior|Input|Output|
+|--------|-----|------|
+|User can add a new store to the database| "Pay 4 More" |"Pay 4 More"|
+|User can add a new brand to the database | "Twinkle Toes" | "Twinkle Toes"|
+|User can view all stores and brands | clicks home | "Pay 4 More, Shoe Shoe Caboose, etc" |
+|User can view all brands carried by that store | clicks "Pay 4 More" | "Twinkle Toes"|
+|User can view all stores that carry a brand | clicks "Twinkle Toes" | "Pay 4 More, Shoe Shoe Caboose |
+|User can add a store from the brands page| use drop down menu or enter new name | "selection inputted" |
+|User can add a brand from the stores page| use drop down menu or enter new name | "selection inputted" |
+|User can delete a store | click delete button | " " |
+|User can edit stores name | new name: "Pay 2 Much" click update | "Pay 2 Much"  |
+|User can delete the entire database if they reveal the secret button | click delete all | Database is now empty |
 
 ## Setup/Installation Requirements
 
