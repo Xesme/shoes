@@ -49,7 +49,6 @@ $app->patch("/patch/{id}", function($id) use($app){
     return $app['twig']->render('index.html.twig', array( 'store' => $store, 'stores' => $stores, 'brands' => $brands));
 });
 
-
 $app->delete('/delete/store/{id}', function($id) use($app){
     $store = Store::getStoreById($id);
     $store->delete();
@@ -57,7 +56,7 @@ $app->delete('/delete/store/{id}', function($id) use($app){
     return $app['twig']->render('index.html.twig', array('stores' => $stores));
 });
 
-    // CRUD for Brand
+    // Twig routes for for Brand
 $app->post("/add/brand", function() use($app){
     $brand = new Brand($_POST['brand_name']);
     $brand->save();
@@ -75,9 +74,7 @@ $app->get("/brand/{id}", function($id) use($app){
     return $app['twig']->render('brand.html.twig', array('brands' => $brands, 'stores' => $stores, 'brand' => $brand_name, 'carried' => $carried));
 });
 
-
-// functions of join
-
+// functions for join table
 $app->post("/add/brand/store/{id}", function($id) use($app){
     $store = Store::getStoreById($id);
     $new_brand = new Brand($_POST['brand_name'], $_POST['brand_id']);

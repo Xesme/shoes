@@ -51,7 +51,6 @@ class Brand
     function addStore($store)
     {
         $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$store->getId()}, {$this->getId()});");
-
     }
 
     function getStore()
@@ -74,7 +73,6 @@ class Brand
     {
         $GLOBALS['DB']->exec("DELETE FROM brands;");
         $GLOBALS['DB']->exec("DELETE FROM stores_brands;");
-
     }
 
     static function getAll()
@@ -91,6 +89,4 @@ class Brand
         return $brands;
     }
 }
-
-
  ?>

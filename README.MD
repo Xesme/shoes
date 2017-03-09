@@ -85,41 +85,53 @@ When you are finished with the assignment, make sure to export your databases an
 * /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
 * CREATE DATABASE shoes;
 * USE shoes;
-* CREATE TABLE stores (store_name VARCHAR (255), id serial PRIMARY KEY);
-* CREATE TABLE brands (bran_name VARCHAR (255), brand_id BIGINT, id serial PRIMARY KEY);
+* CREATE TABLE stores (store_name VARCHAR (255), store_id serial PRIMARY KEY);
+* CREATE TABLE brands (brand_name VARCHAR (255), brand_id serial PRIMARY KEY);
 * CREATE DATABASE shoes_test;
 * USE shoes_test;
-* CREATE TABLE stores (store_name VARCHAR (255), id serial PRIMARY KEY);
-* CREATE TABLE brands (bran_name VARCHAR (255), brand_id BIGINT, id serial PRIMARY KEY);
+* CREATE TABLE stores (store_name VARCHAR (255), store_id serial PRIMARY KEY);
+* CREATE TABLE brands (brand_name VARCHAR (255), brand_id serial PRIMARY KEY);
 * DESCRIBE stores;
-| Field      | Type                | Null | Key | Default | Extra          |
-|------------|---------------------|------|-----|---------|----------------|
-| store_name | varchar(255)        | YES  |     | NULL    |                |
-| store_id   | bigint(20)          | YES  |     | NULL    |                |
-| id         | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-3 rows in set (0.11 sec)
+
+
+| Field | Type | Null | Key | Default | Extra |
+|-------|------|------|-----|---------|-------|
+| store_name | varchar(255) | YES |  | NULL |  |
+| store_id | bigint(20) | YES |  | NULL |  |
+
 
 * DESCRIBE brands;
-| Field     | Type                | Null | Key | Default | Extra          |
-|-----------|---------------------|------|-----|---------|----------------|
-| bran_name | varchar(255)        | YES  |     | NULL    |                |
-| brand_id  | bigint(20)          | YES  |     | NULL    |                |
-| id        | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-3 rows in set (0.00 sec)
-* INSERT INTO stores (store_name, store_id, id) VALUES ('{$this->getName()}'); (function save())
+
+
+| Field | Type | Null | Key | Default | Extra |
+|-------|------|------|-----|---------|-------|
+| bran_name | varchar(255) | YES  |   | NULL    |  |
+|  brand_id | bigint(20) unsigned | NO | PRI | NULL | auto_increment |
+
+* INSERT INTO stores (store_name) VALUES ('{$this->getName()}'); (function save())
 * "SELECT * FROM stores;" (function getAll())
 * "DELETE FROM stores; (function deleteAll())"
 * "UPDATE stores SET name = '{new_name}' WHERE id = {$this->getId()};" (function update())
-* "DELETE FROM stores WHERE id = '{$this->getId()}';"
-* "SELECT * FROM stores WHERE id = {$this->getId()};"
+* DELETE FROM stores WHERE id = '{$this->getId()}';
+* SELECT * FROM stores WHERE id = {$this->getId()};
+* INSERT INTO brands (brand_name) VALUES ('{$this->getName()}');
+* SELECT * FROM brands WHERE brand_id = {$brand_id};
 * CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id BIGINT, brand_id BIGINT);
-* DESCRIBE stores_brands|
-| Field    | Type                | Null | Key | Default | Extra          |
-|----------|---------------------|------|-----|---------|----------------|
-| id       | bigint(20) unsigned | NO   | PRI | NULL    | auto_increment |
-| store_id | bigint(20)          | YES  |     | NULL    |                |
-| brand_id | bigint(20)          | YES  |     | NULL    |                |
+* DESCRIBE stores_brands
+
+
+| Field | Type | Null | Key | Default | Extra |
+|-------|------|------|-----|---------|-------|
+| id       | bigint(20) unsigned | NO   | PRI | NULL | auto_increment |
+| store_id | bigint(20)  | YES  |     | NULL    |   |
+| brand_id | bigint(20)  | YES  |     | NULL    |   |
 
 * USE shoes_test;
 * CREATE TABLE stores_brands (id serial PRIMARY KEY, store_id BIGINT, brand_id BIGINT);
 * DELETE FROM stores_brands WHERE store_id = {$this->getId()} and brand_id = {$brand->getId()};
+* INSERT INTO stores_brands (store_id, brand_id) VALUES ({$store->getId()}, {$this->getId()});
+* SELECT brands.* FROM stores JOIN stores_brands ON (stores.store_id = stores_brands.store_id) JOIN brands ON ( stores_brands.brand_id = brands.brand_id) WHERE stores.store_id = {$this->getId()};
+* SELECT stores.* FROM brands JOIN stores_brands ON (stores_brands.brand_id = brands.brand_id) JOIN stores ON (stores.store_id = stores_brands.store_id) WHERE brands.brand_id = {$this->getId()};
+* DELETE FROM brands;
+* DELETE FROM stores_brands;
+* SELECT * FROM brands;

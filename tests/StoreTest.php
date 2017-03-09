@@ -34,7 +34,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
         // Assert
         $this->assertEquals("PayMore", $result);
         $this->assertEquals($store_id, $result2);
-
     }
 
     function test_save()
@@ -184,7 +183,6 @@ class StoreTest extends PHPUnit_Framework_TestCase
 
         // Assert
         $this->assertEquals([$new_brand], $result);
-
     }
 }
 

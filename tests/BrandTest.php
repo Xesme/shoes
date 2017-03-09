@@ -90,24 +90,22 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
     function test_find()
     {
-        {
-            // Arrange
-            $brand_name = 'Nada';
-            $new_test = new Brand($brand_name);
-            $new_test->save();
+        // Arrange
+        $brand_name = 'Nada';
+        $new_test = new Brand($brand_name);
+        $new_test->save();
 
-            $brand_name2 = 'Soft Soles';
-            $new_test2 = new Brand($brand_name2);
-            $new_test2->save();
+        $brand_name2 = 'Soft Soles';
+        $new_test2 = new Brand($brand_name2);
+        $new_test2->save();
 
-            // Act
-            $brand_id = $new_test->getId();
-            $new_test->getByBrandId($brand_id);
-            $result = Brand::getAll();
+        // Act
+        $brand_id = $new_test->getId();
+        $new_test->getByBrandId($brand_id);
+        $result = Brand::getAll();
 
-            // Assert
-            $this->assertEquals($new_test, $result[0]);
-        }
+        // Assert
+        $this->assertEquals($new_test, $result[0]);
     }
 
     function test_addStore()
