@@ -75,6 +75,9 @@ $app->get("/brand/{id}", function($id) use($app){
     return $app['twig']->render('brand.html.twig', array('brands' => $brands, 'stores' => $stores, 'brand' => $brand_name, 'carried' => $carried));
 });
 
+
+// functions of join
+
 $app->post("/add/brand/store/{id}", function($id) use($app){
     $store = Store::getStoreById($id);
     $new_brand = new Brand($_POST['brand_name'], $_POST['brand_id']);
@@ -95,6 +98,16 @@ $app->post("/add/store/brand/{id}", function($id) use($app){
     return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands));
 });
 
+$app->post("/add/store/to/brand/{id}", function($id) use($app){
+    $brand = Brand::getByBrandId($id);
+    $new_store = new Store($_POST['name']);
+    $new_store->save();
+    $new_store->getId();
+    $brand->addStore($new_store);
+    $stores = $brand->getStore();
+    $brands = Brand::getAll();
+    return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands));
+});
 
 $app->post("/delete/all", function() use($app){
     Store::deleteAll();
