@@ -95,6 +95,13 @@ $app->post("/add/store/brand/{id}", function($id) use($app){
     return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands));
 });
 
+
+$app->post("/delete/all", function() use($app){
+    Store::deleteAll();
+    Brand::deleteAll();
+    return $app['twig']->render('index.html.twig');
+});
+
 // return the app
 return $app;
  ?>
