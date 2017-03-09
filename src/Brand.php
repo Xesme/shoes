@@ -36,20 +36,39 @@ class Brand
     }
 
     function getByBrandId($brand_id)
-    {   var_dump($brand_id);
+    {
         $returned_brand = $GLOBALS['DB']->query("SELECT * FROM brands WHERE brand_id = {$brand_id};");
 
-        // $brands = array();
         foreach($returned_brand as $brand)
         {
             $brand_name = $brand['brand_name'];
             $brand_id = $brand['brand_id'];
             $new_brand = new Brand($brand_name, $brand_id);
-            // array_push($new_brand, $brands);
             return $new_brand;
         }
-        // return $brands;
     }
+
+    function addStore($store)
+    {
+        $GLOBALS['DB']->exec("INSERT INTO stores_brands (store_id, brand_id) VALUES ({$store->getId()}, {$this->getId()});");
+
+    }
+
+    function getStore()
+    {
+        $returned_stores = $GLOBALS['DB']->query("SELECT stores.* FROM brands JOIN stores_brands ON (stores_brands.brand_id = brands.brand_id) JOIN stores ON (stores.store_id = stores_brands.store_id) WHERE brands.brand_id = {$this->getId()};");
+
+        $stores = array();
+        foreach($returned_stores as $store)
+        {
+            $store_name = $store['name'];
+            $store_id = $store['store_id'];
+            $new_store = new Store($store_name, $store_id);
+            array_push($stores, $new_store);
+        }
+        return $stores;
+    }
+
     // static functions
     static function deleteAll()
     {

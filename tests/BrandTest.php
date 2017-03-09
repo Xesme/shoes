@@ -95,7 +95,6 @@ class BrandTest extends PHPUnit_Framework_TestCase
             $brand_name = 'Nada';
             $new_test = new Brand($brand_name);
             $new_test->save();
-            var_dump($new_test);
 
             $brand_name2 = 'Soft Soles';
             $new_test2 = new Brand($brand_name2);
@@ -111,5 +110,23 @@ class BrandTest extends PHPUnit_Framework_TestCase
         }
     }
 
+    function test_addStore()
+    {
+        // Arrange
+        $name = 'PayMore';
+        $new_store = new Store($name);
+        $new_store->save();
+
+        $brand_name = "Nada";
+        $new_brand = new Brand($brand_name);
+        $new_brand->save();
+
+        // Act
+        $new_brand->addStore($new_store);
+        $result = $new_brand->getStore();
+
+        // Assert
+        $this->assertEquals([$new_store], $result);
+    }
 }
  ?>

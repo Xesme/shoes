@@ -134,7 +134,8 @@ class StoreTest extends PHPUnit_Framework_TestCase
         $new_test2->save();
 
         // Act
-        $new_test2->find();
+        $store_id = $new_test2->getId();
+        $new_test2->getStoreById($store_id);
         $result = Store::getAll();
 
         // Assert
@@ -145,7 +146,7 @@ class StoreTest extends PHPUnit_Framework_TestCase
     {
         // Arrange
         $brand_name = "Nada";
-        $new_brand = new Brand($brand_name, $brand_id);
+        $new_brand = new Brand($brand_name);
         $new_brand->save();
 
         $name = 'PayMore';

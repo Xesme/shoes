@@ -10,7 +10,14 @@
             <input type="text" name="name" required>
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
-        <a href="/store/{{ stores.getId }}">click me</a>
+        <h3>{{ stores.getName }} currently carries these brands:</h3>
+        {% if carried is not empty %}
+        <ul>
+        {% for brand in carried %}
+        <li><a href="/brand/{{brand.getId}}">{{ brand.getName }}</a></li>
+        {% endfor %}
+        </ul>
+        {% endif %}
         <br>
         <br>
         <h2>Delete this store</h2>
@@ -21,7 +28,7 @@
     </div>
     <div class="col-md-6">
         <h2>Select a brand to add to store:</h2>
-        <form action="/add/brand/store" method="post">
+        <form action="/add/brand/store/{{ stores.getId }}" method="post">
             <select name="brand_id">
                 <option></option>
                 {% if brands is not empty%}
@@ -32,5 +39,6 @@
             </select>
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
+        <h2> Add a new brand </h2>
     </div>
 {% endblock %}
