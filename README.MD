@@ -57,7 +57,7 @@ When you are finished with the assignment, make sure to export your databases an
 
 
 ## Known Bugs
-* There are no bugs currently but the project is unfinished.
+* There are no known bugs at this time. 
 
 ## Support and contact details
 * No support

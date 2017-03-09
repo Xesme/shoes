@@ -10,13 +10,16 @@
         <input type="text" name="name" required>
         <button class="btn btn-success" type="submit"> Add </button>
     </form>
-    <h3>{{ stores.getName }} currently carries these brands:</h3>
     {% if carried is not empty %}
+    <h3>{{ stores.getName }} currently carries these brands:</h3>
     <ul>
         {% for brand in carried %}
         <li><a href="/brand/{{brand.getId}}">{{ brand.getName }}</a></li>
         {% endfor %}
     </ul>
+    {% endif %}
+    {% if carried is empty%}
+    <h3>This store is not carrying any brands, please add a brand to the store.</h3>
     {% endif %}
     <br>
     <br>
