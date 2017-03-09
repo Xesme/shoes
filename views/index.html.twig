@@ -1,48 +1,47 @@
 {% extends 'base.html.twig' %}
 
-    {% block page %}
-    <div class="col-md-6">
-        <h1>{{ store }}</h1>
-        <h2>Add a new store to the database</h2>
-        <form action="/add/store" method="post">
-            <label for="name">Name:</label>
-            <input type="text" name="name" required>
-            <button class="btn btn-success" type="submit"> Add </button>
-        </form>
-        <br>
-        <br>
-        <h3>List of stores:</h3>
-        {% if stores is not empty %}
-        <ul>
-            {% for store in stores %}
-            <li><a href="/store/{{store.getId}}">{{ store.getName }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
-    <div class="col-md-6">
-        <h2>Add a new brand to the database</h2>
-        <form action="/add/brand" method="post">
-            <label for="brand_name">Name:</label>
-            <input type="text" name="brand_name" required>
-            <button class="btn btn-success" type="submit"> Add </button>
-        </form>
-        <br>
-        <br>
-        <h3>List of brands:</h3>
-        {% if brands is not empty %}
-        <ul>
-            {% for brand in brands %}
-            <li><a href="/brand/{{brand.getId}}">{{ brand.getName }}</a></li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
-    <div class="hidden">
+{% block page %}
+<div class="col-md-6">
+    <h1>{{ store }}</h1>
+    <h2>Add a new store to the database</h2>
+    <form action="/add/store" method="post">
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <button class="btn btn-success" type="submit"> Add </button>
+    </form>
+    <br>
+    <br>
+    <h3>List of stores:</h3>
+    {% if stores is not empty %}
+    <ul>
+        {% for store in stores %}
+        <li><a href="/store/{{store.getId}}">{{ store.getName }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+<div class="col-md-6">
+    <h2>Add a new brand to the database</h2>
+    <form action="/add/brand" method="post">
+        <label for="brand_name">Name:</label>
+        <input type="text" name="brand_name" required>
+        <button class="btn btn-success" type="submit"> Add </button>
+    </form>
+    <br>
+    <br>
+    <h3>List of brands:</h3>
+    {% if brands is not empty %}
+    <ul>
+        {% for brand in brands %}
+        <li><a href="/brand/{{brand.getId}}">{{ brand.getName }}</a></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+<div class="hidden">
     <h1>Delete Entire Database</h1>
     <form action="/delete/all" method="post">
         <button type="submit" name="delete">Database</button>
     </form>
 </div>
-
 {% endblock %}

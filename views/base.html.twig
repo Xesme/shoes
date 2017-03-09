@@ -2,20 +2,20 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
-        <meta charset="utf-8">
-        <title> OMG Shoes! </title>
-    </head>
-    <body>
-        {% block header %}
-        <a href="/">Home</a>
-        {% endblock %}
-        <div class="container">
-            <div class="row">
-                {% block page %}
-                {% endblock %}
-            </div>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+    <meta charset="utf-8">
+    <title> OMG Shoes! </title>
+</head>
+<body>
+    {% block header %}
+    <a href="/">Home</a>
+    {% endblock %}
+    <div class="container">
+        <div class="row">
+            {% block page %}
+            {% endblock %}
         </div>
-    </body>
+    </div>
+</body>
 </html>
