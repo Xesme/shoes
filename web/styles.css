@@ -1,0 +1,12 @@
+li {
+    list-style-type: none;
+    text-align: center;
+}
+
+.box {
+    background-color: #34ac96;
+}
+
+.well {
+    color: #000;
+}

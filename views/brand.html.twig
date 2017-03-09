@@ -1,22 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block page %}
-<div class="col-md-6">
-
+<div class="col-md-6 well">
     <h1>{{ brand.getName }}</h1>
-
-    <h1>This brand is sold currently carried in these store(s):</h1>
     {% if carried is not empty %}
+    <h3>This brand is currently sold in these store(s):</h3>
     <ul>
         {% for store in carried %}
         <li><a href="/store/{{store.getId}}">{{ store.getName }}</a></li>
         {% endfor %}
     </ul>
     {% endif %}
+    <!-- for no stores -->
+    {% if carried is empty %}
+    <p>This brand is not carried in any stores, please add a store.</p>
+    {% endif %}
 </div>
 <div class="col-md-g">
     <div class="col-md-6">
-        <h2>Select a store to add to brand:</h2>
+        <h3>Select a store to add to brand:</h3>
         <form action="/add/store/brand/{{ brand.getId }}" method="post">
             <select name="store_id">
                 <option></option>
@@ -28,7 +30,7 @@
             </select>
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
-        <h2> Add a new store </h2>
+        <h3> Add a new store </h3>
         <form action="/add/store/to/brand/{{ brand.getId }}" method="post">
             <label for="name">Name:</label>
             <input type="text" name="name" required>
