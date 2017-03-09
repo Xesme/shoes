@@ -109,6 +109,18 @@ $app->post("/add/store/to/brand/{id}", function($id) use($app){
     return $app['twig']->render('brand.html.twig', array('stores' => $stores, 'brands' => $brands));
 });
 
+$app->post("/add/brand/to/store/{id}", function($id) use($app){
+    $store = Store::getStoreById($id);
+    $new_brand = new Brand($_POST['brand_name']);
+    $new_brand->save();
+    $new_brand->getId();
+    $store->addBrand($new_brand);
+    $brands = $store->getBrand();
+    $stores = Store::getAll();
+    return $app['twig']->render('store.html.twig', array('stores' => $store, 'brands' => $brands));
+});
+
+// hidden
 $app->post("/delete/all", function() use($app){
     Store::deleteAll();
     Brand::deleteAll();

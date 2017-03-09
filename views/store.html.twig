@@ -40,6 +40,10 @@
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
         <h2> Add a new brand </h2>
-        
+        <form action="/add/brand/to/store/{{ stores.getId }}" method="post">
+            <label for="name">Name:</label>
+            <input type="text" name="brand_name" required>
+            <button class="btn btn-success" type="submit"> Add </button>
+        </form>
     </div>
 {% endblock %}

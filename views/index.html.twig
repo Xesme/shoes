@@ -25,14 +25,6 @@
         <form action="/add/brand" method="post">
             <label for="brand_name">Name:</label>
             <input type="text" name="brand_name" required>
-            <!-- <select name="store_id" required>
-                <option></option>
-                {% if stores is not empty%}
-                {% for store in stores %}
-                <option value='{{ store.getId }}'>{{ store.getName }}</option>
-                {% endfor %}
-                {% endif %}
-            </select> -->
             <button class="btn btn-success" type="submit"> Add </button>
         </form>
         <br>
@@ -46,9 +38,11 @@
         </ul>
         {% endif %}
     </div>
+    <div class="hidden">
     <h1>Delete Entire Database</h1>
     <form action="/delete/all" method="post">
         <button type="submit" name="delete">Database</button>
     </form>
+</div>
 
 {% endblock %}
