@@ -76,10 +76,10 @@ When you are finished with the assignment, make sure to export your databases an
 * Implementation of basic Store routes with Twig
 * Build and test Class (Brand)  
 * Implementation of basic Brand routes with Twig
-* Build and test StoreBrand Class (and join statements)
-* Build twig routes for StoreBrand
+* Build and test store_brand (join statement)
+* Build twig routes for stores_brands
 * Implement routes with Twig and polish html and CSS
-* End specifications
+
 
 ## Used MySQL Commands
 * /Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot
